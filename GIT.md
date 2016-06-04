@@ -15,56 +15,54 @@ gitk --all    - show all branches
 
 
 ### wdrożenie
+```
 git checkout develop
 git merge --no-ff feature/HOSTING-XXX
-
-#### w tym momencie wersja develop to 1.2.2-SNAPSHOT
-
+```
+w tym momencie wersja develop to 1.2.2-SNAPSHOT
+```
 git checkout stable
-
-#### w tym momencie wersja stable to 1.2.1-20160517
-
-git revert #### zakładam, że uprzednio był commit na stable, podbijający wersję, revert 
-
-#### w tym momencie wersja stable to 1.2.1-SNAPSHOT, czyli poprzednia wersja developa
-
-git merge --no-ff develop 
-
-#### w tym momencie wersja stable to 1.2.2-SNAPSHOT, czyli aktualna wersja developa, nie powinien wystąpić konflikt
-
-#### git commit -m 'Merge branch develop into stable' ??? - czy to jest potrzebne, czy sam się robi ten commit przy merge ???
-#### to niepotrzebne, sam robi commita.
-
-#### ./update-version.sh <ostatni tag> <nowy tag>, 
-sh ./update-version.sh 1.2.2-SNAPSHOT 1.2.2-20160520  #### dziś jest 2016-05-20
-
-#### Ostatni wiersz wyjścia z komendy spowoduje zakomitowanie zmiany wersji
-#### czyli:
-#### git add #### wszystkie pom.xml
-#### git commit -m 'Update version to 1.2.2-20160520'
-
-git tag v1.2.2-20160520
-
-git checkout develop
-
-sh ./update-version.sh 1.2.2-SNAPSHOT 1.2.3-SNAPSHOT 
-
-
-#### pytanie - czy tej zmiany wersji na stable z 1.2.1-SNAPSHOT na 1.2.2-20160520 nie można by robić na developie, następnie mergować do stable, a następnie zmieniać wersję developa na 1.2.3-SNAPSHOT? Wówczas nie byłoby konfliktu
-#### odp. Można, ale wtedy pewnie większy bałagan.
-#### było kilka commitów bez git revert na stable - wówczas rozumiem, że ręczne rozwiązanie konfliktu?
-
-### TODO
+```
+w tym momencie wersja stable to 1.2.1-20160517
+zakładam, że uprzednio był commit na stable, podbijający wersję, revert 
+```
 git revert 
-cherry pick?
+```
+w tym momencie wersja stable to 1.2.1-SNAPSHOT, czyli poprzednia wersja developa
+```
+git merge --no-ff develop 
+```
+w tym momencie wersja stable to 1.2.2-SNAPSHOT, czyli aktualna wersja developa, nie powinien wystąpić konflikt
+Nie jest potrzebne wykonanie komendy:
+git commit -m 'Merge branch develop into stable' 
+(git?) sam robi commita.
 
-### Ustawienie gita, bez podawania usera i hasła w ssh:
-git remote set-url origin git@github.com:krzysztofkolcz/try_git.git
-Przy klonowaniu nowego repozytorium używać ssh zamiast https
+Zakładając, że dziś jest 2016-05-20
+```
+./update-version.sh <ostatni tag> <nowy tag>, 
+sh ./update-version.sh 1.2.2-SNAPSHOT 1.2.2-20160520  
+```
+Ostatni wiersz wyjścia z komendy spowoduje zakomitowanie zmiany wersji
+czyli:
+git add #### wszystkie pom.xml
+git commit -m 'Update version to 1.2.2-20160520'
+```
+git tag v1.2.2-20160520
+git checkout develop
+```
+```
+sh ./update-version.sh 1.2.2-SNAPSHOT 1.2.3-SNAPSHOT 
+```
 
-### Ćwiczenie - dwa foldery /try_git/ oraz /BeginningHibernate/try_git2/try_git/
+pytanie - czy tej zmiany wersji na stable z 1.2.1-SNAPSHOT na 1.2.2-20160520 nie można by robić na developie, następnie mergować do stable, a następnie zmieniać wersję developa na 1.2.3-SNAPSHOT? Wówczas nie byłoby konfliktu
+odp. Można, ale wtedy pewnie większy bałagan.
+Było kilka commitów bez git revert na stable - wówczas rozumiem, że ręczne rozwiązanie konfliktu?
+
+#### Ćwiczenie z przeprowadzenia wdrożenia
+dwa foldery /try_git/ oraz /BeginningHibernate/try_git2/try_git/
 wersja stable - 1.0.0-20160520
 wersja develop - 1.0.1-SNAPSHOT
+```
 /try_git/
 git checkout develop
 git checkout -b feature/TRYGIT-3
@@ -83,9 +81,10 @@ git push
 git checkout stable
 git push
 git branch -d feature/TRYGIT-3 //TODO - jak usunąć branch z remota? Nie dodałem tego brancha na remota, więc jeszcze raz przećwiczyć
+```
 
 
-#### Ćwiczenie - 
+### Zmiana historii 
 feature/TRYGIT-4
 na branchu dodaje pliki a.txt oraz b.txt
 robię commita i pusha
@@ -129,7 +128,15 @@ git checkout -b sf origin/serverfix
 Tworzy lokalnego brancha sf trackującego zdalnego brancha origin/serverfix
 
 
+### TODO
+git revert 
+cherry pick?
+
+### Ustawienie gita, bez podawania usera i hasła w ssh:
+git remote set-url origin git@github.com:krzysztofkolcz/try_git.git
+Przy klonowaniu nowego repozytorium używać ssh zamiast https
 
 
 
+##
 
