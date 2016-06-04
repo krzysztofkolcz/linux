@@ -92,6 +92,10 @@ modyfikuję plik a.txt
 robię commita i pusha
 chcę całkowicie usunąć plik a.txt z historii
 
+Commit 1
+         \
+          -- Commit 2 -- Commit 3
+
 Ponieważ branch jest publiczny, nie mogę skorzystać z reseta, więc muszę skorzystać z reverta, co zachowa mi plik w historii, ale go usunie.
 git revert <commit> a.txt - nie działa - fatal bad revision a.txt
 
@@ -138,5 +142,58 @@ Przy klonowaniu nowego repozytorium używać ssh zamiast https
 
 
 
-##
+## Przeniesienie commitów z jednego brancha do drugiego 
+
+```
+Branch master           Commit 1
+                                \
+Branch feature-1                 -- Commit 2 -- Commit 3 -- Commit 4 -- Commit 5
+```
+
+Chcę otrzymać:
+
+```
+Branch master           Commit 1 -- Commit 4 -- Commit 5
+                                \
+Branch feature-1                 -- Commit 2 -- Commit 3 
+```
+
+On branch master
+```
+git log
+```
+
+commit 7d0f00ba9510e618cc5b83dbd5ceb8bb50f93551
+  file8 changed
+
+commit bcdb04804a81d0eb168f32fd3c1a1debdc320bc5
+  file8 added - commit to be moved on top of develop
+
+commit 594580d089957b49c5384317e5984f20616a2e4c
+  file7 changed
+
+commit 0f6c63cace9e2a2d7fe030b1d013a2d4c023982c
+  file7 changed
+
+commit b613942a17d642ceaa130d5dbc6f242d8f97905d
+  Update vesion to 1.0.2-SNAPSHOT
+
+
+Testuje cherry pick:
+http://think-like-a-git.net/sections/rebase-from-the-ground-up/cherry-picking-explained.html
+
+```
+git checkout develop
+git cherry-pick bcdb04804a81d0eb168f32fd3c1a1debdc320bc5
+git cherry-pick 7d0f00ba9510e618cc5b83dbd5ceb8bb50f93551
+
+```
+
+Otrzymałem takie coś:
+
+```
+Branch master           Commit 1 -- Commit 4` -- Commit 5`
+                                \
+Branch feature-1                 -- Commit 2 -- Commit 3 -- Commit 4 -- Commit 5
+```
 
