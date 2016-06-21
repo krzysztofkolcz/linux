@@ -19,6 +19,16 @@ gitk --all    - show all branches
 git checkout develop
 git merge --no-ff feature/HOSTING-XXX
 ```
+dla remote moge zrobic:
+```
+git merge --no-ff origin/feature/HOSTING-XXX
+```
+Nastepnie usuwam feature branche lokalne oraz remote:
+```
+git branch -d feature/HOSTING-XXX
+git push origin --delete feature/HOSTING-XXX
+```
+
 w tym momencie wersja develop to 1.2.2-SNAPSHOT
 ```
 git checkout stable
@@ -26,7 +36,7 @@ git checkout stable
 w tym momencie wersja stable to 1.2.1-20160517
 zakładam, że uprzednio był commit na stable, podbijający wersję, revert 
 ```
-git revert 
+git revert HEAD
 ```
 w tym momencie wersja stable to 1.2.1-SNAPSHOT, czyli poprzednia wersja developa
 ```
@@ -196,4 +206,12 @@ Branch master           Commit 1 -- Commit 4` -- Commit 5`
                                 \
 Branch feature-1                 -- Commit 2 -- Commit 3 -- Commit 4 -- Commit 5
 ```
+
+
+TODO
+usunięty został plik. Dowiedzieć się, w którym commicie i w którym branchu
+
+git diff --cached
+git commit -m "Update version to 1.2.3-20160610"
+git tag v1.2.3-20160610
 
