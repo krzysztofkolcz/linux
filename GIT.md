@@ -29,20 +29,20 @@ git branch -d feature/HOSTING-XXX
 git push origin --delete feature/HOSTING-XXX
 ```
 
-w tym momencie wersja develop to 1.2.2-SNAPSHOT
+w tym momencie wersja develop to 1.2.2-SNAPSHOT (1.2.5-SNAPSHOT)
 ```
 git checkout stable
 ```
-w tym momencie wersja stable to 1.2.1-20160517
+w tym momencie wersja stable to 1.2.1-20160517 (1.2.4-20160621)
 zakładam, że uprzednio był commit na stable, podbijający wersję, revert 
 ```
 git revert HEAD
 ```
-w tym momencie wersja stable to 1.2.1-SNAPSHOT, czyli poprzednia wersja developa
+w tym momencie wersja stable to 1.2.1-SNAPSHOT (1.2.4-SNAPSHOT), czyli poprzednia wersja developa
 ```
 git merge --no-ff develop 
 ```
-w tym momencie wersja stable to 1.2.2-SNAPSHOT, czyli aktualna wersja developa, nie powinien wystąpić konflikt
+w tym momencie wersja stable to 1.2.2-SNAPSHOT (1.2.5-SNAPSHOT), czyli aktualna wersja developa, nie powinien wystąpić konflikt
 Nie jest potrzebne wykonanie komendy:
 git commit -m 'Merge branch develop into stable' 
 (git?) sam robi commita.
@@ -51,17 +51,47 @@ Zakładając, że dziś jest 2016-05-20
 ```
 ./update-version.sh <ostatni tag> <nowy tag>, 
 sh ./update-version.sh 1.2.2-SNAPSHOT 1.2.2-20160520  
+(sh ./update-version.sh 1.2.5-SNAPSHOT 1.2.5-20160628)
 ```
-Ostatni wiersz wyjścia z komendy spowoduje zakomitowanie zmiany wersji
-czyli:
-git add #### wszystkie pom.xml
-git commit -m 'Update version to 1.2.2-20160520'
+Muszę chyba ręcznie przeprowadzić te komeny, które wyrzuca update-version.sh
 ```
-git tag v1.2.2-20160520
+git status
+find -name '*.versionsBackup' -exec rm \{\} \;
+git status
+git add -A
+git diff --cached
+git commit -m "Update version to  1.2.2-20160520"
+(git commit -m "Update version to 1.2.5-20160628")
+git tag 1.2.2-20160520
+(git tag v1.2.5-20160628)
+```
+
+
+```
 git checkout develop
-```
-```
 sh ./update-version.sh 1.2.2-SNAPSHOT 1.2.3-SNAPSHOT 
+(sh ./update-version.sh 1.2.5-SNAPSHOT 1.2.6-SNAPSHOT )
+
+git status
+find -name '*.versionsBackup' -exec rm \{\} \;
+git status
+git add -A
+git diff --cached
+git commit -m "Update version to  1.2.3-SNAPSHOT"
+(git commit -m "Update version to 1.2.6-SNAPSHOT")
+```
+Nie taguje developa
+
+Wrzucam zmiany do repo
+```
+git push 
+git checkout stable
+git push 
+```
+Wrzucam taga do repo
+```
+git push origin v1.2.2-20160520
+(git push origin v1.2.5-20160628)
 ```
 
 pytanie - czy tej zmiany wersji na stable z 1.2.1-SNAPSHOT na 1.2.2-20160520 nie można by robić na developie, następnie mergować do stable, a następnie zmieniać wersję developa na 1.2.3-SNAPSHOT? Wówczas nie byłoby konfliktu
@@ -215,3 +245,28 @@ git diff --cached
 git commit -m "Update version to 1.2.3-20160610"
 git tag v1.2.3-20160610
 
+
+
+Wrzucenie bug fixa do developa i na stable, bez konfliktów w wersjach
+1. Muszę cofnąć wersję developa?
+2. Muszę cofnąć wersję stable?
+3. Dodać poprawkę do developa
+4. Domergować developa do stable
+5. Ustawić ponownie wersje dla develop i stable?
+
+
+1. git checkout develop; git revert HEAD; develop: 1.2.6-SNAPSHOT -> 1.2.5-SNAPSHOT
+2. git checkout stable; git revert HEAD; stable 1.2.5-20160628 -> 1.2.5-SNAPSHOT
+3. git checkout develop; git merge origin/featuer/HOSTING-2886
+4. git checkout stable; git merge develop;
+5. update version (stable)
+sh ./update-version.sh 1.2.5-SNAPSHOT 1.2.5-20160629
+6. update version (develop)
+sh ./update-version.sh 1.2.5-SNAPSHOT 1.2.6-SNAPSHOT
+
+
+
+
+## cofnięcie merga przed rozwiązaniem konfliktow
+git merge branch
+git merge --abort
