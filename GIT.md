@@ -270,3 +270,14 @@ sh ./update-version.sh 1.2.5-SNAPSHOT 1.2.6-SNAPSHOT
 ## cofnięcie merga przed rozwiązaniem konfliktow
 git merge branch
 git merge --abort
+
+## copy remote branch to local
+git checkout -b branch_name origin/branch_name
+
+## rebase
+git checkout branch
+git rebase master
+git push --force origin branch
+
+
+
