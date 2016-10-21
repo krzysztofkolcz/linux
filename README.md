@@ -24,3 +24,8 @@ getent hosts hostname | awk '{ print $1 }'
 rsync -avze ssh username@ihostname:/path/to/file/file.txt .
 
 
+### strace - problemy z procesami
+Problem z funkcją mail() w php
+odpalenie skryptu z przeglądarki, 
+ps aux | grep fpm
+strace -f -p 2457
