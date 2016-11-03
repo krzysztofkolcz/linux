@@ -6,6 +6,10 @@ https://www.atlassian.com/git/tutorials
 To untrack a single file that has already been added/initialized to your repository, i.e., stop tracking the file but not delete it from your system use:
 git rm --cached filename
 
+## dlete files 
+many, without doing git rm for each of them
+git add -u
+
 
 ### gitk
 https://lostechies.com/joshuaflanagan/2010/09/03/use-gitk-to-understand-git-merge-and-rebase/
@@ -280,4 +284,6 @@ git rebase master
 git push --force origin branch
 
 
-
+## resolve easy conflicts
+git checkout --ours PATH/FILE
+git checkout --theirs PATH/FILE
