@@ -280,4 +280,5 @@ git rebase master
 git push --force origin branch
 
 
-
+## git config - ingnore file permissions
+git config core.fileMode false
