@@ -3,6 +3,8 @@ find -name \*.gz -print0 | xargs -0 zgrep 'doDowngradeHostingToPackage'
 
 ### grep sort:
 grep -rl 'eventbyevent' . | sort -t: -n -k2
+#### grep sort by date:
+ls -rt | xargs grep -l 'asda1fr.pl'
 
 ### Extracg .gz file
 gunzip file.gz
