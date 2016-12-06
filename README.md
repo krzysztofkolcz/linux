@@ -24,7 +24,8 @@ getent hosts hostname | awk '{ print $1 }'
 ### rsync 
 #### download file
 rsync -avze ssh username@ihostname:/path/to/file/file.txt .
-
+#### upload file to server
+rsync -avze ssh file.txt username@ihostname:/path/to/file/
 
 ### strace - problemy z procesami
 Problem z funkcją mail() w php
