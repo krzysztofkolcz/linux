@@ -284,6 +284,9 @@ git rebase master
 git push --force origin branch
 
 
+## git config - ingnore file permissions
+git config core.fileMode false
+
 ## resolve easy conflicts
 git checkout --ours PATH/FILE
 git checkout --theirs PATH/FILE
