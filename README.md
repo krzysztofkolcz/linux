@@ -32,3 +32,7 @@ Problem z funkcją mail() w php
 odpalenie skryptu z przeglądarki, 
 ps aux | grep fpm
 strace -f -p 2457
+
+### Openssl
+#### Informacja na temat certyfikatu:
+openssl x509 -in certyfikat.pem -noout -text
