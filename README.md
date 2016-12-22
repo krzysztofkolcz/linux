@@ -1,4 +1,4 @@
-### Grep throug .gz files
+## Grep throug .gz files
 find -name \*.gz -print0 | xargs -0 zgrep 'doDowngradeHostingToPackage'
 
 ### grep sort:
@@ -11,6 +11,9 @@ gunzip file.gz
 
 ### Extracg .tar.gz file
 tar -zxvf file.tar.gz
+
+### Create .tar.gz archive
+tar -cvf powerhosting.tar.gz powerhosting
 
 ### rm find
 find . -name "FILE-TO-FIND" -exec rm -rf {} \;
@@ -32,6 +35,9 @@ Problem z funkcją mail() w php
 odpalenie skryptu z przeglądarki, 
 ps aux | grep fpm
 strace -f -p 2457
+
+ponowne odpalenie skryptu z przeglądarki i analiza outputu.
+
 
 ### Openssl
 #### Informacja na temat certyfikatu:
