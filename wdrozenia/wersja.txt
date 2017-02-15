@@ -1,0 +1,14 @@
+git checkout develop
+git fetch
+
+git merge --no-ff feature/HOSTING-3195
+
+git checkout stable
+git revert HEAD 
+git merge --no-ff develop 
+sh ./update-version.sh 1.2.22-SNAPSHOT 1.2.22-20170214
+
+
+git checkout develop
+sh ./update-version.sh 1.2.22-SNAPSHOT 1.2.23-SNAPSHOT
+

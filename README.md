@@ -45,3 +45,6 @@ openssl x509 -in certyfikat.pem -noout -text
 
 #### Zmiana formatu pkcs#1 na pkcs#8
 openssl pkcs8 -topk8 -inform PEM -outform PEM -in priv1.pem -out priv8.pem -nocrypt
+
+#### Zip bez plików ukrytych
+find /full_path -path '*/.*' -prune -o -type f -print | zip ~/file.zip -@
