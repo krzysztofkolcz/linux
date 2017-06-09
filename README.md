@@ -31,3 +31,7 @@ Problem z funkcją mail() w php
 odpalenie skryptu z przeglądarki, 
 ps aux | grep fpm
 strace -f -p 2457
+
+### Replace string in all searched files
+ find . -name 'FILENAME' -type f -exec sed -i 's/SEARCH/REPLACE/g' {} \;
+ find . -name '*.java' -type f -exec sed -i 's/platformer01/platformer02/g' {} \;

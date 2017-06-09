@@ -1,0 +1,67 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" plugin on GitHub repo
+Plugin 'scrooloose/nerdtree'
+"Plugin 'groenewege/vim-less'
+Plugin 'lunaru/vim-less'
+" HTML
+" Komentowanie
+Plugin 'tomtom/tcomment_vim'
+" Skakanie do zamykającego taga %
+Plugin 'tmhedberg/matchit'
+" zmiana otaczających tekst znaków np.: cs'" 
+Plugin 'tpope/vim-surround' 
+" mapowanie tagów html
+Plugin 'tpope/vim-ragtag'
+"git merge conficts
+Plugin 'tpope/vim-fugitive'
+" twig highlight
+Plugin 'evidens/vim-twig'
+" otwieranie plikow
+Plugin 'wincent/command-t'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+:set laststatus=2
+:set statusline+=%F
+:set nu
+
+:set smartindent
+:set tabstop=2
+:set shiftwidth=2
+:set expandtab
+
+nnoremap : ;
+nnoremap ; :
+
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>
+
+"macro - create getters and setters, example line: '   private Integer id'
+"(without semicolon at the end of line), put cursor at the beginning of line.
+let @a = 'ww"iyww"jywopublic "ipaget"jpblll~$a(){return "jpa;}public void set"jpblll~$a("ipa"jpa){this."jpa = "jpa;}'
+" adding semicolon, and fixing indent - put cursor at the beginning of the
+" line
+let @b = '$a;jjjjjVjj>jjjj'
