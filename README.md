@@ -1,4 +1,4 @@
-### Grep throug .gz files
+## Grep throug .gz files
 find -name \*.gz -print0 | xargs -0 zgrep 'doDowngradeHostingToPackage'
 
 ### grep sort:
@@ -12,6 +12,9 @@ gunzip file.gz
 ### Extracg .tar.gz file
 tar -zxvf file.tar.gz
 
+### Create .tar.gz archive
+tar -cvf powerhosting.tar.gz powerhosting
+
 ### rm find
 find . -name "FILE-TO-FIND" -exec rm -rf {} \;
 
@@ -24,7 +27,8 @@ getent hosts hostname | awk '{ print $1 }'
 ### rsync 
 #### download file
 rsync -avze ssh username@ihostname:/path/to/file/file.txt .
-
+#### upload file to server
+rsync -avze ssh file.txt username@ihostname:/path/to/file/
 
 ### strace - problemy z procesami
 Problem z funkcją mail() w php
@@ -35,3 +39,15 @@ strace -f -p 2457
 ### Replace string in all searched files
  find . -name 'FILENAME' -type f -exec sed -i 's/SEARCH/REPLACE/g' {} \;
  find . -name '*.java' -type f -exec sed -i 's/platformer01/platformer02/g' {} \;
+ponowne odpalenie skryptu z przeglądarki i analiza outputu.
+
+
+### Openssl
+#### Informacja na temat certyfikatu:
+openssl x509 -in certyfikat.pem -noout -text
+
+#### Zmiana formatu pkcs#1 na pkcs#8
+openssl pkcs8 -topk8 -inform PEM -outform PEM -in priv1.pem -out priv8.pem -nocrypt
+
+#### Zip bez plików ukrytych
+find /full_path -path '*/.*' -prune -o -type f -print | zip ~/file.zip -@
