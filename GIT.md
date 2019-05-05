@@ -2,6 +2,14 @@
 https://git-scm.com/doc
 https://www.atlassian.com/git/tutorials
 
+### ssh - commit without user and password
+ssh-keygen -t rsa -b 4096 -C "email.address"
+sudo apt-get install xclip
+xclip -sel clip < ~/.ssh/id_rsa.pub
+
+github.com -> settings -> ssh and gpg keys -> New SSH key
+
+
 ### Untrack single file
 To untrack a single file that has already been added/initialized to your repository, i.e., stop tracking the file but not delete it from your system use:
 git rm --cached filename
