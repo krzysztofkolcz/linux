@@ -1,20 +1,29 @@
 ### Uwieżytelnianie
+#### Token
 Wygenerowanie nowego tokena:
 1. Wchodze na:
 2. Authentication code (Telefon, Authenticator)
 3. Wybieram zakres tokenu i generuje. Wygenerowany kopiuje (Desktop/github/git-https-passwords.txt)
+4. Przy push podaje:
+Username: krzysztofkolcz
+Password: <token>
+
+5.  git config --global credential.helper store
+
+
+#### Uwierzytelnianie przez ssh
+ssh-keygen -t rsa -b 4096 -C "krzysztof.kolcz@gmail.com"
+sudo apt-get install xclip
+xclip -sel clip < ~/.ssh/id_rsa.pub
+
+github.com -> settings -> ssh and gpg keys -> New SSH key
+
+git remote set-url origin git@github.com:krzysztofkolcz/linux.git
 
 
 ### Materiały:
 https://git-scm.com/doc
 https://www.atlassian.com/git/tutorials
-
-### ssh - commit without user and password
-ssh-keygen -t rsa -b 4096 -C "email.address"
-sudo apt-get install xclip
-xclip -sel clip < ~/.ssh/id_rsa.pub
-
-github.com -> settings -> ssh and gpg keys -> New SSH key
 
 
 ### Untrack single file
