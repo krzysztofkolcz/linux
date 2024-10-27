@@ -1,3 +1,10 @@
+### Uwieżytelnianie
+Wygenerowanie nowego tokena:
+1. Wchodze na:
+2. Authentication code (Telefon, Authenticator)
+3. Wybieram zakres tokenu i generuje. Wygenerowany kopiuje (Desktop/github/git-https-passwords.txt)
+
+
 ### Materiały:
 https://git-scm.com/doc
 https://www.atlassian.com/git/tutorials
